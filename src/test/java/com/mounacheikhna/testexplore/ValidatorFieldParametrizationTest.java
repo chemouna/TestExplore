@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class ValidatorFieldParametrizationTest {
@@ -39,6 +40,11 @@ public class ValidatorFieldParametrizationTest {
     @Test
     public void testValidate() {
         assertEquals(validationResult, validator.validate(input));
+    }
+
+    @Test
+    public void anotherTestMethod() {
+        assertTrue(true);
     }
 
 }

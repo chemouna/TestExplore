@@ -11,11 +11,10 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-
 @RunWith(Parameterized.class)
 public class ValidatorTest {
 
-    public Extra input;
+    private Extra input;
     private boolean validationResult;
     private Validator validator;
 
