@@ -22,8 +22,8 @@ public class ValidatorTest {
     @Parameters(name = "{index}: validate({0})={1}") // not sure about this notation ?
     public static List<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {new Extra("integer", "1"), true}, {new Extra("boolean", "true"), true},
-                {new Extra("integer", "a1"), false}, {new Extra("boolean", "b1"), false}
+                { new Extra("integer", "1"), true}, {new Extra("boolean", "true"), true },
+                { new Extra("integer", "a1"), false}, {new Extra("boolean", "b1"), false }
         });
     }
 
