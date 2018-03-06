@@ -24,7 +24,7 @@ public class ValidatorMixOnceAndParametrized {
 
         @Before
         public void setUp() {
-            validator = new Validator();
+            validator = createValidator();
         }
 
         @Parameterized.Parameters(name = "{index}: validate({0})={1}") // not sure about this notation ?
@@ -47,11 +47,22 @@ public class ValidatorMixOnceAndParametrized {
         }
     }
 
+    private static Validator createValidator() {
+        return new Validator();
+    }
+
     public static class NotParameterizedPart {
+
+        private Validator validator;
+
+        @Before
+        public void setUp() {
+            validator = createValidator();
+        }
 
         @Test
         public void anotherTestMethod() {
-            assertTrue(true);
+            assertTrue(validator.validate(new Extra("boolean", "true")));
         }
     }
 
