@@ -35,6 +35,7 @@ public class ContainerTest {
     public void setUp() throws Exception {
         container = new Container();
         container.setContainerXOffset(10);
+        container.setContainerXSubtract(5);
     }
 
     @Theory

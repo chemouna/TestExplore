@@ -5,6 +5,7 @@ public class Container {
     private Rect bounds;
     private Margin margin;
     private int containerXOffset;
+    private int containerXSubtract;
 
     public void setBounds(Rect bounds) {
         this.bounds = bounds;
@@ -12,6 +13,10 @@ public class Container {
 
     public void setContainerXOffset(int containerXOffset) {
         this.containerXOffset = containerXOffset;
+    }
+
+    public void setContainerXSubtract(int containerXSubtract) {
+        this.containerXSubtract = containerXSubtract;
     }
 
     public void show() {
