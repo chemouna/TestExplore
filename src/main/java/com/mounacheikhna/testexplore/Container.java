@@ -21,11 +21,11 @@ public class Container {
         setMargin(margin);
     }
 
-    private int getRightMargin() {
+    public int getRightMargin() {
         return bounds.right + containerXOffset; // maybe width - bounds.right + containerXOffset
     }
 
-    private int getLeftMargin() {
+    public int getLeftMargin() {
         return bounds.left + containerXOffset;
     }
 
@@ -33,4 +33,7 @@ public class Container {
         this.margin = margin;
     }
 
+    public Margin getMargin() {
+        return margin;
+    }
 }
