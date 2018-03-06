@@ -2,9 +2,12 @@ package com.mounacheikhna.testexplore;
 
 import org.junit.Before;
 import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.FromDataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assume.assumeTrue;
 
 @RunWith(Theories.class)
 public class ContainerTest {
@@ -12,13 +15,20 @@ public class ContainerTest {
     private Container container;
 
     // is there a way to generate these left, right, t, b in a range instead of specifying them by hand ?
-    @DataPoints
-    public static final Rect[] bounds = new Rect[] {
-            new Rect(691, -182, 800, 102),
-            new Rect(500, -122, 500, 82),
-            new Rect(391, -101, 300, 162),
-            new Rect(481, -143, 200, 172)
-    };
+    // ideally returning in a range 0 -> l : 20 squares then each left, left + size length, top, top + size length
+    @DataPoints("bounds")
+    public static Rect[] bounds() {
+        int[] lefts = {1296, 1224, 1080};
+        int[] rights = {1296, 1440, -182, 182};
+        int[] tops = {-182, 0, 182, 364};
+        int[] bottoms = {182, 364, 728};
+
+        Rect[] rects = new Rect[4];
+        for (int i = 0; i < 4; i++) {
+            rects[i] = new Rect(lefts[i], tops[i], rights[i], bottoms[i]);
+        }
+        return rects;
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -26,8 +36,13 @@ public class ContainerTest {
     }
 
     @Theory
-    public void testLeft(Rect bounds) {
+    public void testLeft(@FromDataPoints("bounds") Rect bounds) {
+        assumeTrue("Bounds are valid", boundsValid(bounds));
         container.setBounds(bounds);
+    }
+
+    private boolean boundsValid(Rect bounds) {
+        return bounds.left < bounds.right && bounds.top < bounds.right;
     }
 
 }
