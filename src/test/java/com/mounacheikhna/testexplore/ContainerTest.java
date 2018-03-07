@@ -31,6 +31,11 @@ public class ContainerTest {
         return rects;
     }
 
+    @DataPoints("containerOffsets")
+    public static int[] containerOffsets() {
+        return new int[]{0, 10, 15};
+    }
+
     @Before
     public void setUp() throws Exception {
         container = new Container();
@@ -38,12 +43,15 @@ public class ContainerTest {
         container.setContainerXSubtract(5);
     }
 
+    // TODO: set it up with different values from containerXOffset
     @Theory
     public void testLeft(@FromDataPoints("bounds") Rect bounds) {
         System.out.println("testLeft with left = " + bounds.left + ", right = " +
                 bounds.right + ", top = " + bounds.top + ", bottom = " + bounds.bottom);
 
         assumeTrue("Bounds are valid", boundsValid(bounds));
+        // TODO: maybe we need assume offsets are valid too ?
+
         container.setBounds(bounds);
         container.show();
         Margin margin = container.getMargin();
